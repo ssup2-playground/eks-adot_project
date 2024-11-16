@@ -5,6 +5,21 @@ eks-adot is prototyping project for ADOT(AWS Distro for OpenTelemetry) collector
 * [aws-terraform](https://github.com/ssup2-playground/eks-adot_aws-terraform) : Terraform for EKS cluster and ADOT collectors.
 * [app-python](https://github.com/ssup2-playground/eks-adot_app-python) : Sample python application.
 
+## Install
+
+* Run terraform
+
+```bash
+# Get terraform code
+$ git clone https://github.com/ssup2-playground/eks-adot_aws-terraform.git && rm ./eks-adot_aws-terraform/terraform.tf
+
+# Run terraform
+$ cd eks-adot_aws-terraform
+$ terraform init
+$ terraform apply -target="module.karpenter"
+$ terraform apply
+```
+
 ## Architecture
 
 ### Metric Architecture
