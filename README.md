@@ -19,6 +19,7 @@ $ terraform init
 $ terraform apply -target="module.prometheus"
 $ terraform apply -target="module.irsa_observer_adot_metric_cw"
 $ terraform apply -target="module.irsa_observer_adot_metric_amp"
+$ terraform apply -target="module.irsa_observer_adot_metric_os"
 $ terraform apply -target="module.karpenter"
 $ terraform apply
 ```
@@ -33,7 +34,7 @@ $ kubectl -n observability patch service grafana -p '{"spec": {"type": "LoadBala
 * Set grafana NLB security Group
 ```
 $ MY_IP=$(curl -s https://checkip.amazonaws.com/)
-$ SG_ID=$(aws ec2 describe-security-groups --filters Name=tag:Name,Values=eks-neuron-grafana-sg --query "SecurityGroups[*].GroupId" --output text)
+$ SG_ID=$(aws ec2 describe-security-groups --filters Name=tag:Name,Values=eks-adot-grafana-sg --query "SecurityGroups[*].GroupId" --output text)
 $ aws ec2 authorize-security-group-ingress --group-id "$SG_ID" --protocol tcp --port 80 --cidr "$MY_IP/32"
 ```
 
