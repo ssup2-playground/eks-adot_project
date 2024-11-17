@@ -17,9 +17,16 @@ $ git clone https://github.com/ssup2-playground/eks-adot_aws-terraform.git && rm
 $ cd eks-adot_aws-terraform
 $ terraform init
 $ terraform apply -target="module.prometheus"
+$ terraform apply -target="awscc_osis_pipeline.metrics"
+$ terraform apply -target="awscc_osis_pipeline.logs"
+$ terraform apply -target="awscc_osis_pipeline.traces"
 $ terraform apply -target="module.irsa_observer_adot_metric_cw"
 $ terraform apply -target="module.irsa_observer_adot_metric_amp"
 $ terraform apply -target="module.irsa_observer_adot_metric_os"
+$ terraform apply -target="module.irsa_observer_adot_log_cw"
+$ terraform apply -target="module.irsa_observer_adot_log_os"
+$ terraform apply -target="module.irsa_observer_adot_trace_xray"
+$ terraform apply -target="module.irsa_observer_adot_trace_os"
 $ terraform apply -target="module.karpenter"
 $ terraform apply
 ```
