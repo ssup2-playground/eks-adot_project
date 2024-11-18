@@ -31,6 +31,20 @@ $ terraform apply -target="module.karpenter"
 $ terraform apply
 ```
 
+* Restart workloads for auto instrumentations.
+
+```
+# restart workloads in observer eks cluster
+$ aws eks update-kubeconfig --name eks-adot-ob-eks
+$ kubectl -n app rollout restart deployment app-python-xray
+$ kubectl -n app rollout restart deployment app-python-os
+$ kubectl -n app rollout restart deployment app-python-tempo
+
+# restart workloads in work eks cluster
+$ aws eks update-kubeconfig --name eks-adot-ob-eks
+$ kubectl -n app rollout restart deployment app-python
+```
+
 ## Login Grafana
 
 * Set grafana NLB
@@ -57,6 +71,8 @@ $ echo http://$(kubectl -n observability get service grafana --output jsonpath='
 http://k8s-observab-grafana-e4e76fb41d-a64e31df8c64616d.elb.ap-northeast-2.amazonaws.com
 ```
 
+## Login OpenSearch
+
 ## Architecture
 
 ### Metric Architecture
@@ -70,3 +86,27 @@ http://k8s-observab-grafana-e4e76fb41d-a64e31df8c64616d.elb.ap-northeast-2.amazo
 ### Trace Architecture
 
 <img src="/images/architecture-trace.png" width="800"/>
+
+## Demo
+
+### Metric / CloudWatch
+
+### Metric / AMP
+
+### Metric / OpenSearch
+
+### Log / CloudWatch
+
+### Log / OpenSearch
+
+### Log / Loki
+
+### Log / Loki Work
+
+### Trace / X-Ray
+
+### Trace / OpenSearch
+
+### Trace / Tempo
+
+### Trace / Tempo Work
