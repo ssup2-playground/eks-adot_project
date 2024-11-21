@@ -130,16 +130,66 @@ http://k8s-observab-grafana-e4e76fb41d-a64e31df8c64616d.elb.ap-northeast-2.amazo
 
 ### Log / CloudWatch
 
+* Screenshots
+
+<img src="/images/log-cloudwatch-01.png" width="800"/>
+
+<img src="/images/log-cloudwatch-02.png" width="800"/>
+
 ### Log / OpenSearch
+
+* Set index patterns
+
+<img src="/images/log-opensearch-index-pattern-01.png" width="800"/>
+
+<img src="/images/log-opensearch-index-pattern-02.png" width="800"/>
+
+<img src="/images/log-opensearch-index-pattern-03.png" width="800"/>
+
+<img src="/images/log-opensearch-index-pattern-04.png" width="800"/>
+
+<img src="/images/log-opensearch-index-pattern-05.png" width="800"/>
+
+* Screenshots
+
+<img src="/images/log-opensearch-discover-01.png" width="800"/>
 
 ### Log / Loki
 
+* Screenshots
+
+<img src="/images/log-loki-01.png" width="800"/>
+
 ### Log / Loki Work
+
+* Screenshots
+
+<img src="/images/log-loki-work-01.png" width="800"/>
 
 ### Trace / X-Ray
 
+* Screenshots
+
+<img src="/images/trace-xray-01.png" width="800"/>
+
+<img src="/images/trace-xray-02.png" width="800"/>
+
 ### Trace / OpenSearch
+
+* Screenshots
+
+<img src="/images/trace-opensearch-01.png" width="800"/>
+
+<img src="/images/trace-opensearch-02.png" width="800"/>
 
 ### Trace / Tempo
 
+* Screenshots
+
+<img src="/images/trace-tempo-01.png" width="800"/>
+
 ### Trace / Tempo Work
+
+* Screenshots
+
+<img src="/images/trace-tempo-work-01.png" width="800"/>
