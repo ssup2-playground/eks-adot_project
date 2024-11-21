@@ -120,7 +120,7 @@ $ curl -s https://checkip.amazonaws.com/
 
 <img src="/images/opensearch-login-05.png" width="600"/>
 
-<img src="/images/opensearch-login-06.png" width="400"/>
+<img src="/images/opensearch-login-06.png" width="600"/>
 
 * Get ARN for IAM Role ARN Ingest
 
