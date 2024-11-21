@@ -9,7 +9,7 @@ eks-adot is prototyping project for ADOT(AWS Distro for OpenTelemetry) collector
 
 * Run terraform
 
-```bash
+```shell
 # Get terraform code
 $ git clone https://github.com/ssup2-playground/eks-adot_aws-terraform.git && rm ./eks-adot_aws-terraform/terraform.tf
 
@@ -31,9 +31,25 @@ $ terraform apply -target="module.karpenter"
 $ terraform apply
 ```
 
+* Set Loki, Tempo endpoints to ADOT collectors in work EKS cluster.
+
+```shell
+# Get Loki and Tempo endpoints on ob EKS cluster
+$ aws eks update-kubeconfig --name eks-adot-ob-eks
+$ LOKI_ENDPOINT=$(kubectl -n adot-collector get service adot-logd-loki --output jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+$ TEMPO_ENDPOINT=$(kubectl -n adot-collector get service adot-traced-tempo --output jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+```
+
+* Run terraform again for ADOT collectors in work EKS cluster.
+
+```shell
+# Run terraform with endpoint vars
+$ terraform apply -var "loki-logd-endpoint=$LOKI_ENDPOINT" -var "tempo-traced-endpoint=$TEMPO_ENDPOINT"
+```
+
 * Restart workloads for auto instrumentations.
 
-```
+```shell
 # restart workloads in observer EKS cluster
 $ aws eks update-kubeconfig --name eks-adot-ob-eks
 $ kubectl -n app rollout restart deployment app-python-xray
@@ -45,42 +61,80 @@ $ aws eks update-kubeconfig --name eks-adot-work-eks
 $ kubectl -n app rollout restart deployment app-python
 ```
 
-* Set Loki, Tempo endpoints to ADOT collectors in work EKS cluster
-
-```
-# Get Loki and Tempo endpoints on ob EKS cluster
-$ aws eks update-kubeconfig --name eks-adot-ob-eks
-$ 
-
-```
-
 ## Login Grafana
 
 * Set grafana NLB
-```
+
+```bash
+$ aws eks update-kubeconfig --name eks-adot-ob-eks
 $ kubectl -n observability patch service grafana -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
 * Set grafana NLB security Group
-```
+
+```shell
 $ MY_IP=$(curl -s https://checkip.amazonaws.com/)
 $ SG_ID=$(aws ec2 describe-security-groups --filters Name=tag:Name,Values=eks-adot-grafana-sg --query "SecurityGroups[*].GroupId" --output text)
 $ aws ec2 authorize-security-group-ingress --group-id "$SG_ID" --protocol tcp --port 80 --cidr "$MY_IP/32"
 ```
 
 * Get grafana `admin` user password
-```
+
+```shell
 $ kubectl -n observability get secrets grafana -o jsonpath='{.data.admin-password}' | base64 --decode
 ugnQJC5Sgg3WkuHi7k8le4U3oB1f9EKhj2G4uS48
 ```
 
 * Get grafana endpoint
+
 ```shell
 $ echo http://$(kubectl -n observability get service grafana --output jsonpath='{.status.loadBalancer.ingress[0].hostname}')
 http://k8s-observab-grafana-e4e76fb41d-a64e31df8c64616d.elb.ap-northeast-2.amazonaws.com
 ```
 
-## Login OpenSearch
+* Login grafana
+
+<img src="/images/grafana-login.png" width="800"/>
+
+## Login and Set Permission OpenSearch
+
+* Get my IP address
+
+```shell
+$ curl -s https://checkip.amazonaws.com/
+```
+
+* Set my IP address to opensearch security config
+
+<img src="/images/opensearch-login-01.png" width="800"/>
+
+<img src="/images/opensearch-login-02.png" width="800"/>
+
+<img src="/images/opensearch-login-03.png" width="800"/>
+
+* Get OpenSearch Dashboard URL
+
+<img src="/images/opensearch-login-04.png" width="800"/>
+
+* Login with ID `admin` / Password `Admin123!`
+
+<img src="/images/opensearch-login-05.png" width="800"/>
+
+<img src="/images/opensearch-login-06.png" width="800"/>
+
+* Set Permission
+
+<img src="/images/opensearch-permission-01.png" width="800"/>
+
+<img src="/images/opensearch-permission-02.png" width="800"/>
+
+<img src="/images/opensearch-permission-03.png" width="800"/>
+
+<img src="/images/opensearch-permission-04.png" width="800"/>
+
+<img src="/images/opensearch-permission-05.png" width="800"/>
+
+<img src="/images/opensearch-permission-06.png" width="800"/>
 
 ## Architecture
 
