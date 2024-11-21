@@ -34,15 +34,24 @@ $ terraform apply
 * Restart workloads for auto instrumentations.
 
 ```
-# restart workloads in observer eks cluster
+# restart workloads in observer EKS cluster
 $ aws eks update-kubeconfig --name eks-adot-ob-eks
 $ kubectl -n app rollout restart deployment app-python-xray
 $ kubectl -n app rollout restart deployment app-python-os
 $ kubectl -n app rollout restart deployment app-python-tempo
 
-# restart workloads in work eks cluster
-$ aws eks update-kubeconfig --name eks-adot-ob-eks
+# restart workloads in work EKS cluster
+$ aws eks update-kubeconfig --name eks-adot-work-eks
 $ kubectl -n app rollout restart deployment app-python
+```
+
+* Set Loki, Tempo endpoints to ADOT collectors in work EKS cluster
+
+```
+# Get Loki and Tempo endpoints on ob EKS cluster
+$ aws eks update-kubeconfig --name eks-adot-ob-eks
+$ 
+
 ```
 
 ## Login Grafana
@@ -91,7 +100,15 @@ http://k8s-observab-grafana-e4e76fb41d-a64e31df8c64616d.elb.ap-northeast-2.amazo
 
 ### Metric / CloudWatch
 
+* Demo Screenshots
+
+<img src="/images/metric-cloudwatch-01.png" width="800"/>
+
 ### Metric / AMP
+
+* Demo Screenshots
+
+<img src="/images/metric-amp-01.png" width="800"/>
 
 ### Metric / OpenSearch
 
