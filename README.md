@@ -122,7 +122,13 @@ $ curl -s https://checkip.amazonaws.com/
 
 <img src="/images/opensearch-login-06.png" width="800"/>
 
-* Set Permission
+* Get ARN for IAM Role ARN Ingest
+
+```bash
+$ aws iam get-role --role-name eks-adot-opensearch-injest --query Role.Arn
+```
+
+* Set ARN for IAM Role ARN Ingest
 
 <img src="/images/opensearch-permission-01.png" width="800"/>
 
