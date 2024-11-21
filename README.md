@@ -106,7 +106,7 @@ $ curl -s https://checkip.amazonaws.com/
 
 * Set my IP address to opensearch security config
 
-<img src="/images/opensearch-login-01.png" width="800"/>
+<img src="/images/opensearch-login-01.png" width="600"/>
 
 <img src="/images/opensearch-login-02.png" width="800"/>
 
@@ -118,9 +118,9 @@ $ curl -s https://checkip.amazonaws.com/
 
 * Login with ID `admin` / Password `Admin123!`
 
-<img src="/images/opensearch-login-05.png" width="800"/>
+<img src="/images/opensearch-login-05.png" width="600"/>
 
-<img src="/images/opensearch-login-06.png" width="800"/>
+<img src="/images/opensearch-login-06.png" width="400"/>
 
 * Get ARN for IAM Role ARN Ingest
 
