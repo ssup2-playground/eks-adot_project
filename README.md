@@ -96,21 +96,37 @@ http://k8s-observab-grafana-e4e76fb41d-a64e31df8c64616d.elb.ap-northeast-2.amazo
 
 <img src="/images/architecture-trace.png" width="800"/>
 
-## Demo
+## Guide & Screenshot
 
 ### Metric / CloudWatch
 
-* Demo Screenshots
+* Screenshots
 
 <img src="/images/metric-cloudwatch-01.png" width="800"/>
 
 ### Metric / AMP
 
-* Demo Screenshots
+* Screenshots
 
 <img src="/images/metric-amp-01.png" width="800"/>
 
 ### Metric / OpenSearch
+
+* Set index patterns
+
+<img src="/images/metric-opensearch-index-pattern-01.png" width="800"/>
+
+<img src="/images/metric-opensearch-index-pattern-02.png" width="800"/>
+
+<img src="/images/metric-opensearch-index-pattern-03.png" width="800"/>
+
+<img src="/images/metric-opensearch-index-pattern-04.png" width="800"/>
+
+<img src="/images/metric-opensearch-index-pattern-05.png" width="800"/>
+
+* Screenshots
+
+<img src="/images/metric-opensearch-discover-01.png" width="800"/>
 
 ### Log / CloudWatch
 
